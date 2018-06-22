@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'bomb.ui'
-#
-# Created by: PyQt5 UI code generator 5.10.1
-#
-# WARNING! All changes made in this file will be lost!
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from tkinter import Tk
 from time import sleep
@@ -65,7 +57,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         self.label.setText(_translate("MainWindow", "Contact / Group Name"))
-        self.cgname.setPlaceholderText(_translate("MainWindow", "casesensitive"))
+        self.cgname.setPlaceholderText(_translate("MainWindow", "casesensitive field and enter full name"))
         self.msgs.setPlaceholderText(_translate("MainWindow", "only numbers"))
         self.label_2.setText(_translate("MainWindow", "Number of messages"))
         self.label_3.setText(_translate("MainWindow", "Message Body"))
