@@ -9,6 +9,7 @@ see the [Legal Notice](#legal-notice) below before us
 # Requirements
 1. Python 3.x
 2. Chrome Browser
+3. Make sure you have [ChromeWebDriver](http://chromedriver.chromium.org/downloads) added to your path
 
 # Dependencies
 ### Manual install
@@ -22,7 +23,7 @@ $ pip install selenium
 ```
 ### Automatic Install
 ```
-$ pip install requirements.txt
+$ pip install -r requirements.txt
 ```
 
 # How to setup
