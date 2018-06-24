@@ -11,7 +11,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowTitle("What A Bomb :: WhatsApp Bomber")
         warn = """
-        <b>Legal disclaimer</b>: Usage of "What a Bomb" is illegal. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+        <b>Legal disclaimer</b>: Usage of "What a Bomb" is only for educational and entertainment purpose. Developers assume no liability and are not responsible for any misuse or damage caused by this program
         """
         MainWindow.resize(674, 379)
         width = root.winfo_screenwidth()
