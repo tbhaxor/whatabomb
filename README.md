@@ -21,6 +21,7 @@ $ pip install PyQt5
 ```
 $ pip install selenium
 ```
+
 ### Automatic Install
 ```
 $ pip install -r requirements.txt
@@ -42,7 +43,7 @@ $ python bomb.py
 6. Rest **What a Bomb** will do ;)
 
 # Legal Notice
-Usage of "What a Bomb" is illegal. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+Usage of "What a Bomb" is only for educational and entertainment purpose. Developers assume no liability and are not responsible for any misuse or damage caused by this program
 
 # Special Thanks
 [Sameer Bhatt](https://github.com/bhattsameer)
