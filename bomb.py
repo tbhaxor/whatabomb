@@ -2,8 +2,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from tkinter import Tk
 from time import sleep
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
+from selenium.common.exceptions import (
+    NoSuchElementException,
+    ElementNotVisibleException,
+)
 from PyQt5.QtWidgets import QMessageBox
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -16,7 +20,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(674, 379)
         width = root.winfo_screenwidth()
         height = root.winfo_screenheight()
-        MainWindow.move(width//4, height//5)
+        MainWindow.move(width // 4, height // 5)
         QMessageBox.warning(MainWindow, "Disclaimer", warn)
         MainWindow.setMinimumSize(QtCore.QSize(674, 379))
         MainWindow.setMaximumSize(QtCore.QSize(674, 379))
@@ -57,14 +61,16 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         self.label.setText(_translate("MainWindow", "Contact / Group Name"))
-        self.cgname.setPlaceholderText(_translate("MainWindow", "casesensitive field and enter full name"))
+        self.cgname.setPlaceholderText(
+            _translate("MainWindow", "casesensitive field and enter full name")
+        )
         self.msgs.setPlaceholderText(_translate("MainWindow", "only numbers"))
         self.label_2.setText(_translate("MainWindow", "Number of messages"))
         self.label_3.setText(_translate("MainWindow", "Message Body"))
         self.bombSend.setText(_translate("MainWindow", "Bomb"))
         self.about.setText(_translate("MainWindow", "About"))
         pass
-    
+
     def bomb(self):
         global search
         search = None
@@ -84,12 +90,22 @@ class Ui_MainWindow(object):
         try:
             number = int(number)
         except:
-            QMessageBox.critical(self.obj, "Error!!!", "Enter any number starting from <b>1</b>")
+            QMessageBox.critical(
+                self.obj, "Error!!!", "Enter any number starting from <b>1</b>"
+            )
             self.msgs.setFocus()
             return None
 
         if mesage == "":
-            a = QtWidgets.QMessageBox.question(self, "Ques!!!", "Since you have not entered any message so we are setting message to <i>Hello, {name}</i><br>Do you want to change it ?".format(name=target),  QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.Cancel)
+            a = QtWidgets.QMessageBox.question(
+                self,
+                "Ques!!!",
+                "Since you have not entered any message so we are setting message to <i>Hello, {name}</i><br>Do you want to change it ?".format(
+                    name=target
+                ),
+                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+                QtWidgets.QMessageBox.Cancel,
+            )
             if a == QtWidgets.QMessageBox.Yes:
                 mesage = "Hello, {}".format(target)
                 pass
@@ -98,7 +114,11 @@ class Ui_MainWindow(object):
                 return None
             pass
 
-        QtWidgets.QMessageBox.information(self.obj, "The last thing", "<h2>We are opening your browser now, just scan QR code and rest we will do</h2>")
+        QtWidgets.QMessageBox.information(
+            self.obj,
+            "The last thing",
+            "<h2>We are opening your browser now, just scan QR code and rest we will do</h2>",
+        )
         driver = webdriver.Chrome()
         driver.maximize_window()
         driver.get("https://web.whatsapp.com")
@@ -111,26 +131,43 @@ class Ui_MainWindow(object):
                 print("search box not found")
         search.clear()
         search.send_keys(target)
-        try:
-            user = driver.find_element_by_xpath('//span[@title = "{}"]'.format(target))
-            user.click()
-        except:
-            driver.quit()
-            QMessageBox.warning(self.obj, "Not Found", "Target not found!!!</br><br>If you have seen target in search result then we will suggest you to do it all once again")
-            return None
+        i = 0
+        while True:
+            try:
+                if i == 15:
+                    break
+                user = driver.find_element_by_xpath(
+                    '//span[@title = "{}"]'.format(target)
+                )
+                i += 1
+                user.click()
+                break
+            except:
+                continue
+                # driver.quit()
+                # QMessageBox.warning(
+                #     self.obj,
+                #     "Not Found",
+                #     "Target not found!!!\n\nIf you have seen target in search result then we will suggest you to do it all once again",
+                # )
+                # return None
         sleep(2)
         try:
-            msg_box = driver.find_element_by_class_name('_2bXVy')
+            msg_box = driver.find_element_by_class_name("_2bXVy")
         except NoSuchElementException:
             msg_box = driver.find_element_by_class_name("_2EXPL")
-            
+
         for i in range(number):
             msg_box.send_keys(mesage)
-            button = driver.find_element_by_class_name('_2lkdt')
+            button = driver.find_element_by_class_name("_2lkdt")
             button.click()
-            print("sent {} messages".format(i+1), end="\r")
+            print("sent {} messages".format(i + 1), end="\r")
         driver.quit()
-        QMessageBox.information(self.obj, "Sent", "<span style='font-size:20px'>Target successfully bombed</span>")
+        QMessageBox.information(
+            self.obj,
+            "Sent",
+            "<span style='font-size:20px'>Target successfully bombed</span>",
+        )
         pass
 
     def MYABOUT(self):
@@ -145,10 +182,13 @@ class Ui_MainWindow(object):
         box.setText(msg)
         box.show()
         pass
+
     pass
+
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
