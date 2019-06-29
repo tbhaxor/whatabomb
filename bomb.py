@@ -1,11 +1,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from tkinter import Tk
 from time import sleep
+from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from selenium.common.exceptions import (
     NoSuchElementException,
     ElementNotVisibleException,
 )
+
+# pylint: disable=no-name-in-module
 from PyQt5.QtWidgets import QMessageBox
 
 
@@ -124,7 +127,9 @@ class Ui_MainWindow(object):
         driver.get("https://web.whatsapp.com")
         while True:
             try:
-                search = driver.find_element_by_class_name("jN-F5")
+                search = driver.find_element_by_xpath(
+                    "/html[1]/body[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/label[1]/input[1]"
+                )
                 print("search box found")
                 break
             except Exception:
@@ -152,15 +157,15 @@ class Ui_MainWindow(object):
                 # )
                 # return None
         sleep(2)
-        try:
-            msg_box = driver.find_element_by_class_name("_2bXVy")
-        except NoSuchElementException:
-            msg_box = driver.find_element_by_class_name("_2EXPL")
+        msg_box = driver.find_element_by_xpath(
+            "/html[1]/body[1]/div[1]/div[1]/div[1]/div[4]/div[1]/footer[1]/div[1]/div[2]/div[1]/div[2]"
+        )
 
         for i in range(number):
-            msg_box.send_keys(mesage)
-            button = driver.find_element_by_class_name("_2lkdt")
-            button.click()
+            msg_box.send_keys(mesage.replace("\n", Keys.SHIFT + Keys.ENTER))
+            msg_box.send_keys(Keys.ENTER)
+            # button = driver.find_element_by_class_name("_2lkdt")
+            # button.click()
             print("sent {} messages".format(i + 1), end="\r")
         driver.quit()
         QMessageBox.information(
