@@ -5,6 +5,7 @@
 see the [Legal Notice](#legal-notice) below before us 
 
 ![image](https://user-images.githubusercontent.com/28386721/41796697-27e17cc6-7685-11e8-84b2-d3c55cf5f803.png)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftbhaxor%2Fwhatabomb.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftbhaxor%2Fwhatabomb?ref=badge_shield)
 
 # Requirements
 1. Python 3.x
@@ -50,3 +51,6 @@ Usage of "What a Bomb" is only for educational and entertainment purpose. Develo
 
 # License
 What a Bomb is licensed to [Apache License 2.0](https://github.com/tbhaxor/whatabomb/blob/master/LICENSE)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftbhaxor%2Fwhatabomb.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftbhaxor%2Fwhatabomb?ref=badge_large)
