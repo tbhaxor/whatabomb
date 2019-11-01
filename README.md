@@ -1,10 +1,11 @@
 # What a Bomb
 
-`What a Bomb` is a selenium driven whatsapp bombing script that allows one to [spam](https://en.wikipedia.org/wiki/Mobile_phone_spam) the message on a contact/group name. It is only for entertainment puporse.
+`What a Bomb` is a selenium driven whatsapp bombing script that allows one to [spam](https://en.wikipedia.org/wiki/Mobile_phone_spam) the message on a contact/group name. It is only for entertainment purpose.
 
-see the [Legal Notice](#legal-notice) below before us 
+Read the [Legal Notice](#legal-notice) below before use 
 
 ![image](https://user-images.githubusercontent.com/28386721/41796697-27e17cc6-7685-11e8-84b2-d3c55cf5f803.png)
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftbhaxor%2Fwhatabomb.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftbhaxor%2Fwhatabomb?ref=badge_shield)
 
 # Requirements
@@ -29,13 +30,13 @@ $ pip install -r requirements.txt
 ```
 
 # How to setup
-After you have all [requirements](#requirements) and [dependencies](#dependencies), follow the following steps
+After you have all [requirements](#requirements) and [dependencies](#dependencies), complete the following steps
 1. Run script
 ```
 $ python bomb.py
 ```
 2. Press OK on the Disclaimer
-3. Enter the target full name
+3. Enter target full name
 4. Click `Bomb` button
 5. Scan QRCode
     + On **Android**: in the Chats _screen_ > _Menu_ > _WhatsApp Web_.
@@ -50,7 +51,7 @@ Usage of "What a Bomb" is only for educational and entertainment purpose. Develo
 [Sameer Bhatt](https://github.com/bhattsameer)
 
 # License
-What a Bomb is licensed to [Apache License 2.0](https://github.com/tbhaxor/whatabomb/blob/master/LICENSE)
+What a Bomb is licensed under the [Apache License 2.0](https://github.com/tbhaxor/whatabomb/blob/master/LICENSE)
 
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftbhaxor%2Fwhatabomb.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftbhaxor%2Fwhatabomb?ref=badge_large)
