@@ -65,8 +65,8 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         self.label.setText(_translate("MainWindow", "Contact / Group Name"))
         self.cgname.setPlaceholderText(
-            _translate("MainWindow", "casesensitive field and enter full name")
-        )
+            _translate("MainWindow",
+                       "casesensitive field and enter full name"))
         self.msgs.setPlaceholderText(_translate("MainWindow", "only numbers"))
         self.label_2.setText(_translate("MainWindow", "Number of messages"))
         self.label_3.setText(_translate("MainWindow", "Message Body"))
@@ -93,29 +93,16 @@ class Ui_MainWindow(object):
         try:
             number = int(number)
         except:
-            QMessageBox.critical(
-                self.obj, "Error!!!", "Enter any number starting from <b>1</b>"
-            )
+            QMessageBox.critical(self.obj, "Error!!!",
+                                 "Enter any number starting from <b>1</b>")
             self.msgs.setFocus()
             return None
 
         if mesage == "":
-            a = QtWidgets.QMessageBox.question(
-                self,
-                "Ques!!!",
-                "Since you have not entered any message so we are setting message to <i>Hello, {name}</i><br>Do you want to change it ?".format(
-                    name=target
-                ),
-                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                QtWidgets.QMessageBox.Cancel,
-            )
-            if a == QtWidgets.QMessageBox.Yes:
-                mesage = "Hello, {}".format(target)
-                pass
-            elif a == QtWidgets.QMessageBox.No:
-                self.msg.setFocus()
-                return None
-            pass
+            QtWidgets.QMessageBox.information(
+                None, "No Message",
+                "Since there is no input message. Taking \"Hello, {name}\"")
+            mesage = "Hello, " + target
 
         QtWidgets.QMessageBox.information(
             self.obj,
@@ -128,35 +115,31 @@ class Ui_MainWindow(object):
         while True:
             try:
                 search = driver.find_element_by_xpath(
-                    "/html[1]/body[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/label[1]/input[1]"
+                    "/html/body/div[1]/div/div/div[3]/div/div[1]/div/label/div/div[2]"
                 )
-                print("search box found")
                 break
             except Exception:
-                print("search box not found")
-        search.clear()
+                pass
+        search.click()
         search.send_keys(target)
-        i = 0
-        while True:
+
+        tries = 15
+
+        while tries:
             try:
-                if i == 15:
-                    break
-                user = driver.find_element_by_xpath(
-                    '//span[@title = "{}"]'.format(target)
-                )
-                i += 1
-                user.click()
+                driver.find_element_by_xpath(
+                    '//span[@title = "{}"]'.format(target)).click()
                 break
+                tries -= 1
+
             except:
-                continue
-                # driver.quit()
-                # QMessageBox.warning(
-                #     self.obj,
-                #     "Not Found",
-                #     "Target not found!!!\n\nIf you have seen target in search result then we will suggest you to do it all once again",
-                # )
-                # return None
-        sleep(2)
+                pass
+        else:
+            QtWidgets.QMessageBox.critical(
+                None, "No Account Found",
+                "No user found with display name '%s'" % target)
+            return None
+
         msg_box = driver.find_element_by_xpath(
             "/html[1]/body[1]/div[1]/div[1]/div[1]/div[4]/div[1]/footer[1]/div[1]/div[2]/div[1]/div[2]"
         )
@@ -164,8 +147,6 @@ class Ui_MainWindow(object):
         for i in range(number):
             msg_box.send_keys(mesage.replace("\n", Keys.SHIFT + Keys.ENTER))
             msg_box.send_keys(Keys.ENTER)
-            # button = driver.find_element_by_class_name("_2lkdt")
-            # button.click()
             print("sent {} messages".format(i + 1), end="\r")
         driver.quit()
         QMessageBox.information(
@@ -200,4 +181,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
